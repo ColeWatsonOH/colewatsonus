@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>⚙️Cole Watson | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #fdfdfb;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #BCAC9B;
+            padding: 2rem;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+        header p {
+            font-size: 1.2rem;
+            color: #333;
+        }
+        nav {
+            text-align: center;
+            padding: 1rem;
+            background: #DDC9B4;
+        }
+        nav a {
+            margin: 0 1rem;
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+        section {
+            padding: 2rem;
+            max-width: 800px;
+            margin: auto;
+        }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .project-card {
+            background: #fff;
+            padding: 1rem;
+            border: 5px solid #ccc;
+            border-radius: 10px;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: #e9f0ea;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Cole Watson</h1>
+    <p>Cybersecurity Enthusiast | Computer Science Student</p>
+</header>
+<nav>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#resume">Resume</a>
+    <a href="#blog">Blog</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section id="portfolio">
+    <h2>Portfolio</h2>
+    <div class="portfolio-grid">
+        <div class="project-card">
+            <h3>Project Title</h3>
+            <p>Short description of your project, tools used, and a link to GitHub or a demo.</p>
+        </div>
+        <!-- More project cards -->
+        <div class="project-card">
+            <h3>A* Algorithm Visualized</h3>
+            <p>Utilized the Python library pyamaze to visualize and implement a A* search algorithm. </p>
+        </div>
+        <div class="project-card">
+            <h3>AI Ethics Presentation</h3>
+            <p>Delivered a 15+ minute presentation on bias in AI, covering ethical concerns and mitigation strategies. In this I also analyzed real-world case studies on algorithmic bias and its societal impact.</p>
+        </div>
+    </div>
+</section>
+
+<section id="resume">
+    <h2>Interactive Resume</h2>
+    <p>Include an interactive timeline or embed your résumé. This can be enhanced with JavaScript.</p>
+    <a href="Cole%20Watson%20-%20Resume.pdf" download>Download my PDF Resume!</a>
+</section>
+
+<section id="blog">
+    <h2>Blog</h2>
+    <p>Blog coming soon. You can integrate Markdown posts later or use a CMS like Ghost or NetlifyCMS.</p>
+</section>
+
+<section id="contact">
+    <h2>Contact</h2>
+    <p>Email me at: <a href="mailto:colekwatson@gmail.com">colekwatson@gmail.com</a></p>
+</section>
+
+<footer>
+    <p>&copy; 2025 Cole Watson. All rights reserved.</p>
+</footer>
+</body>
+</html>

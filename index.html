@@ -1,116 +1,342 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>⚙️Cole Watson | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cole Watson | Cybersecurity & IT Portfolio</title>
+    <!-- Load Tailwind CSS via CDN --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons via CDN --><script src="https://unpkg.com/lucide@latest"></script>
     <style>
+        /* Setting Inter as the default font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
         body {
-            margin: 0;
             font-family: 'Inter', sans-serif;
-            background-color: #fdfdfb;
-            color: #1a1a1a;
-            line-height: 1.6;
+            scroll-behavior: smooth;
+            /* Primary Background: Dark Charcoal (#1A1A1A) */
+            background-color: #1A1A1A;
+            /* Text Color: Near White (#EAEAEA) */
+            color: #EAEAEA;
         }
-        header {
-            background-color: #BCAC9B;
-            padding: 2rem;
-            text-align: center;
+        /* Custom class for the card background: Slate Gray (#2C2C2C) */
+        .bg-card-dark {
+            background-color: #2C2C2C;
         }
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            font-weight: 800;
+
+        /* Fixed Navigation Bar Styling */
+        #navbar {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.5);
         }
-        header p {
-            font-size: 1.2rem;
-            color: #333;
-        }
-        nav {
-            text-align: center;
-            padding: 1rem;
-            background: #DDC9B4;
-        }
-        nav a {
-            margin: 0 1rem;
-            text-decoration: none;
-            color: #1a1a1a;
-            font-weight: 600;
-        }
+
+        /* Section adjustment for the sticky nav */
         section {
-            padding: 2rem;
-            max-width: 800px;
-            margin: auto;
+            margin-top: -5rem; /* Pull up to scroll targets properly */
         }
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1rem;
+
+        .container {
+            max-width: 1200px;
         }
-        .project-card {
-            background: #fff;
-            padding: 1rem;
-            border: 5px solid #ccc;
-            border-radius: 10px;
+
+        /* Style for interactive resume boxes */
+        .interactive-item {
+            cursor: pointer;
+            transition: all 0.2s;
         }
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background: #e9f0ea;
-            font-size: 0.9rem;
+        .interactive-item:hover, .interactive-item.active {
+            background-color: #2C2C2C; /* Highlight when active/hovered */
+            transform: translateX(4px);
+            border-left: 4px solid #007BFF;
         }
     </style>
 </head>
-<body>
-<header>
-    <h1>Cole Watson</h1>
-    <p>Cybersecurity Enthusiast | Computer Science Student</p>
-</header>
-<nav>
-    <a href="#portfolio">Portfolio</a>
-    <a href="#resume">Resume</a>
-    <a href="#blog">Blog</a>
-    <a href="#contact">Contact</a>
-</nav>
+<body class="antialiased">
 
-<section id="portfolio">
-    <h2>Portfolio</h2>
-    <div class="portfolio-grid">
-        <div class="project-card">
-            <h3>Project Title</h3>
-            <p>Short description of your project, tools used, and a link to GitHub or a demo.</p>
+<!-- 1. Sticky Navigation Bar (Navbar) --><header id="navbar" class="sticky top-0 z-50 bg-[#1A1A1A]/95 backdrop-blur-sm border-b border-[#A0AEC0]/30">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+
+        <!-- Logo/Name --><a href="#hero-main" class="text-2xl font-extrabold text-[#007BFF] tracking-wide">COLE WATSON | Portfolio</a>
+
+        <!-- Desktop Navigation Links --><nav class="hidden lg:flex space-x-8 font-medium">
+        <a href="#skills" class="text-[#EAEAEA] hover:text-[#007BFF] transition duration-300">Skills & Tech</a>
+        <a href="#projects" class="text-[#EAEAEA] hover:text-[#007BFF] transition duration-300">Projects</a>
+        <a href="#resume-hub" class="text-[#EAEAEA] hover:text-[#007BFF] transition duration-300">Experience Hub</a>
+        <a href="#education" class="text-[#EAEAEA] hover:text-[#007BFF] transition duration-300">Education</a>
+    </nav>
+
+        <!-- CTA Button --><a href="mailto:colekwatson@gmail.com&subject=Website%20Request%20|%20" class="hidden lg:inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-semibold rounded-lg text-[#1A1A1A] bg-[#007BFF] hover:bg-[#A0AEC0] transition duration-300 transform hover:scale-105">
+        Get In Touch
+    </a>
+
+        <!-- Mobile Menu Button --><button id="menu-button" class="lg:hidden text-[#EAEAEA] hover:text-[#007BFF] p-2 rounded-lg transition duration-300">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+    </button>
+    </div>
+
+    <!-- Mobile Menu Dropdown --><div id="mobile-menu" class="hidden lg:hidden bg-[#2C2C2C] border-t border-[#A0AEC0]/50">
+    <nav class="flex flex-col space-y-1 p-4 font-medium">
+        <a href="#skills" class="block py-2 px-3 rounded-lg hover:bg-[#1A1A1A]/50 hover:text-[#007BFF] transition duration-300">Skills & Tech</a>
+        <a href="#projects" class="block py-2 px-3 rounded-lg hover:bg-[#1A1A1A]/50 hover:text-[#007BFF] transition duration-300">Projects</a>
+        <a href="#resume-hub" class="block py-2 px-3 rounded-lg hover:bg-[#1A1A1A]/50 hover:text-[#007BFF] transition duration-300">Experience Hub</a>
+        <a href="#education" class="block py-2 px-3 rounded-lg hover:bg-[#1A1A1A]/50 hover:text-[#007BFF] transition duration-300">Education</a>
+        <a href="mailto:colekwatson@gmail.com&subject=Website%20Request%20|%20" class="block mt-2 text-center py-2 px-3 rounded-lg bg-[#007BFF] text-[#1A1A1A] font-semibold hover:bg-[#A0AEC0] transition duration-300">Get In Touch</a>
+    </nav>
+</div>
+</header>
+
+<!-- Main Content Flow --><main class="container mx-auto px-6">
+
+    <!-- 1. Hero Introduction (Resume Header) --><!-- Full screen height, centered, with top padding to clear the sticky nav --><section class="min-h-screen pt-32 pb-16 text-center flex items-center justify-center" id="hero-main">
+    <div class="flex flex-col items-center">
+        <div class="w-28 h-28 mb-6 bg-[#007BFF] rounded-full flex items-center justify-center shadow-2xl shadow-[#007BFF]/30 border-4 border-[#A0AEC0]">
+            <i data-lucide="award" class="w-16 h-16 text-[#1A1A1A]"></i>
         </div>
-        <!-- More project cards -->
-        <div class="project-card">
-            <h3>A* Algorithm Visualized</h3>
-            <p>Utilized the Python library pyamaze to visualize and implement a A* search algorithm. </p>
-        </div>
-        <div class="project-card">
-            <h3>AI Ethics Presentation</h3>
-            <p>Delivered a 15+ minute presentation on bias in AI, covering ethical concerns and mitigation strategies. In this I also analyzed real-world case studies on algorithmic bias and its societal impact.</p>
+        <h1 class="text-6xl md:text-8xl font-extrabold mb-4 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-[#007BFF] to-[#A0AEC0]">
+            COLE WATSON
+        </h1>
+        <p class="text-3xl text-[#EAEAEA]/90 font-light mb-8">
+            Computer Science Senior | Cybersecurity & IT Engineer
+        </p>
+        <p class="max-w-3xl text-lg text-[#EAEAEA]/70 border-l-4 border-[#A0AEC0] pl-6 italic">
+            "Detail-oriented Computer Science senior with a minor in Computer and Network Security, applying technical support and project coordination experience to secure infrastructure."
+        </p>
+        <div class="flex space-x-4 mt-8">
+            <a href="#resume-hub" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg shadow-xl text-[#1A1A1A] bg-[#007BFF] hover:bg-[#A0AEC0] transition duration-300 transform hover:scale-105">
+                Interactive Experience Hub <i data-lucide="speech" class="w-5 h-5 ml-2"></i>
+            </a>
+            <a href="file_name_pdf" download class="inline-flex items-center justify-center px-8 py-3 border-2 border-[#A0AEC0] text-base font-medium rounded-lg text-[#A0AEC0] hover:bg-[#A0AEC0]/10 transition duration-300 transform hover:scale-105">
+                Download Full Resume <i data-lucide="download" class="w-5 h-5 ml-2"></i>
+            </a>
         </div>
     </div>
 </section>
 
-<section id="resume">
-    <h2>Interactive Resume</h2>
-    <p>Include an interactive timeline or embed your résumé. This can be enhanced with JavaScript.</p>
-    <a href="Cole%20Watson%20-%20Resume.pdf" download>Download my PDF Resume!</a>
+    <!-- 2. Technical Competencies Section (Skills) --><section id="skills" class="pt-32 pb-20">
+    <h2 class="text-4xl font-bold mb-12 text-center text-[#007BFF] flex items-center justify-center"><i data-lucide="settings-2" class="w-9 h-9 mr-3 text-[#A0AEC0]"></i> Technical Competencies</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+        <!-- Skill 1: Security & Defense --><div class="bg-card-dark p-6 rounded-xl shadow-xl transition duration-300 hover:shadow-[#007BFF]/50 border-t-4 border-[#007BFF]">
+        <i data-lucide="shield" class="w-8 h-8 text-[#007BFF] mb-3"></i>
+        <h4 class="text-xl font-semibold mb-2 text-[#EAEAEA]">Security & Foundational IT</h4>
+        <p class="text-[#EAEAEA]/70 text-sm">Actively pursuing <strong>CompTIA Security+</strong> certification; experienced in technical support, troubleshooting, and network protocol basics.</p>
+    </div>
+
+        <!-- Skill 2: Scripting & Databases --><div class="bg-card-dark p-6 rounded-xl shadow-xl transition duration-300 hover:shadow-[#A0AEC0]/50 border-t-4 border-[#A0AEC0]">
+        <i data-lucide="terminal" class="w-8 h-8 text-[#A0AEC0] mb-3"></i>
+        <h4 class="text-xl font-semibold mb-2 text-[#EAEAEA]">Programming & Data</h4>
+        <p class="text-[#EAEAEA]/70 text-sm">Certiport IT Specialist in <strong>Python, HTML & CSS, and Databases (SQL)</strong>. Proficient in Java, input handling, and secure password logic.</p>
+    </div>
+
+        <!-- Skill 3: Systems & Operations --><div class="bg-card-dark p-6 rounded-xl shadow-xl transition duration-300 hover:shadow-[#A0AEC0]/50 border-t-4 border-[#A0AEC0]">
+        <i data-lucide="server" class="w-8 h-8 text-[#A0AEC0] mb-3"></i>
+        <h4 class="text-xl font-semibold mb-2 text-[#EAEAEA]">Systems & Ops Support</h4>
+        <p class="text-[#EAEAEA]/70 text-sm">Hands-on experience with computer imaging (<strong>FOG, MDT</strong>), IT project coordination, and managing hardware/software inventories.</p>
+    </div>
+
+        <!-- Skill 4: Data Management --><div class="bg-card-dark p-6 rounded-xl shadow-xl transition duration-300 hover:shadow-[#007BFF]/50 border-t-4 border-[#007BFF]">
+        <i data-lucide="database" class="w-8 h-8 text-[#007BFF] mb-3"></i>
+        <h4 class="text-xl font-semibold mb-2 text-[#EAEAEA]">Digital Asset Management</h4>
+        <p class="text-[#EAEAEA]/70 text-sm">Implemented <strong>DAM strategy</strong> and standardized file naming/encoding for cross-platform compatibility across the Music Department (100+ users).</p>
+    </div>
+    </div>
 </section>
 
-<section id="blog">
-    <h2>Blog</h2>
-    <p>Blog coming soon. You can integrate Markdown posts later or use a CMS like Ghost or NetlifyCMS.</p>
+    <!-- 3. Featured Projects Section --><section id="projects" class="pt-32 pb-20">
+    <h2 class="text-4xl font-bold mb-12 text-center text-[#007BFF] flex items-center justify-center"><i data-lucide="folder-open" class="w-9 h-9 mr-3 text-[#A0AEC0]"></i> Featured Projects & Implementations</h2>
+
+    <div class="space-y-10">
+
+        <!-- Project 1: NCL Competition --><div class="bg-card-dark p-8 rounded-xl shadow-xl transition duration-300 hover:scale-[1.01] border-l-8 border-[#007BFF] lg:flex lg:space-x-8">
+        <div class="lg:w-3/4">
+            <span class="text-sm uppercase tracking-widest text-[#007BFF] font-bold block mb-2">PROJECT 001 / CYBER COMPETITION</span>
+            <h4 class="text-2xl font-semibold text-[#EAEAEA] mb-3">National Cyber League (NCL) Spring 2024</h4>
+            <p class="text-[#EAEAEA]/80 mb-4">
+                <strong>Description:</strong> Earned <strong>Gold recognition (52nd Percentile Overall)</strong> in the NCL Individual Game. Demonstrated hands-on proficiency in core security disciplines including <strong>OSINT, Cryptography, and Password Cracking</strong>. This project validates practical security skills under pressure.
+            </p>
+            <a href="https://cyberskyline.com" target="_blank" class="inline-flex items-center text-[#A0AEC0] hover:text-[#007BFF] font-medium transition duration-300">
+                View NCL Link <i data-lucide="external-link" class="w-4 h-4 ml-2"></i>
+            </a>
+        </div>
+        <div class="lg:w-1/4 pt-4 lg:pt-0">
+            <h5 class="font-semibold text-[#A0AEC0] mb-2">Disciplines:</h5>
+            <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-[#1A1A1A] border border-[#007BFF] text-[#007BFF] rounded-full text-xs font-medium">OSINT</span>
+                <span class="px-3 py-1 bg-[#1A1A1A] border border-[#A0AEC0] text-[#A0AEC0] rounded-full text-xs font-medium">Cryptography</span>
+                <span class="px-3 py-1 bg-[#1A1A1A] border border-[#007BFF] text-[#007BFF] rounded-full text-xs font-medium">Password Cracking</span>
+            </div>
+        </div>
+    </div>
+
+        <!-- Project 2: Python Password Generator --><div class="bg-card-dark p-8 rounded-xl shadow-xl transition duration-300 hover:scale-[1.01] border-l-8 border-[#A0AEC0] lg:flex lg:space-x-8">
+        <div class="lg:w-3/4">
+            <span class="text-sm uppercase tracking-widest text-[#A0AEC0] font-bold block mb-2">PROJECT 002 / SECURE CODING</span>
+            <h4 class="text-2xl font-semibold text-[#EAEAEA] mb-3">Secure Password Generator (Python)</h4>
+            <p class="text-[#EAEAEA]/80 mb-4">
+                <strong>Description:</strong> Developed a command-line application in <strong>Python</strong> to generate customizable, secure passwords. Engineered logic for two complexity levels and implemented a file-export feature, demonstrating skills in user input handling, secure algorithm design, and application utility.
+            </p>
+            <a href="https://github.com/colewatson/password-generator" target="_blank" class="inline-flex items-center text-[#A0AEC0] hover:text-[#007BFF] font-medium transition duration-300">
+                View GitHub Repository <i data-lucide="external-link" class="w-4 h-4 ml-2"></i>
+            </a>
+        </div>
+        <div class="lg:w-1/4 pt-4 lg:pt-0">
+            <h5 class="font-semibold text-[#A0AEC0] mb-2">Technologies:</h5>
+            <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-[#1A1A1A] border border-[#A0AEC0] text-[#A0AEC0] rounded-full text-xs font-medium">Python</span>
+                <span class="px-3 py-1 bg-[#1A1A1A] border border-[#007BFF] text-[#007BFF] rounded-full text-xs font-medium">Command Line</span>
+            </div>
+        </div>
+    </div>
+
+    </div>
 </section>
 
-<section id="contact">
-    <h2>Contact</h2>
-    <p>Email me at: <a href="mailto:colekwatson@gmail.com">colekwatson@gmail.com</a></p>
+    <!-- 4. Interactive Experience Hub (Now includes Work Experience) --><section id="resume-hub" class="pt-32 pb-20 border-t border-[#A0AEC0]/30">
+    <h2 class="text-4xl font-bold mb-12 text-center text-[#007BFF] flex items-center justify-center"><i data-lucide="file-text" class="w-9 h-9 mr-3 text-[#A0AEC0]"></i> Interactive Experience Hub</h2>
+
+    <div class="bg-card-dark p-6 rounded-xl shadow-xl border-l-8 border-[#007BFF] grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+
+        <!-- Left Column: Experience Outline --><div id="resume-outline" class="space-y-4">
+        <h3 class="text-2xl font-semibold text-[#EAEAEA] mb-4 border-b border-[#007BFF]/50 pb-2">Work Experience & Projects</h3>
+
+        <!-- Interactive Item 1 (Digital Asset Specialist) --><div data-id="work_das" class="interactive-item p-3 rounded-lg border-l-4 border-transparent">
+        <p class="font-bold text-[#007BFF]">Digital Asset Specialist</p>
+        <p class="text-sm text-[#A0AEC0]">University of Mount Union (Dec 2024 – Present)</p>
+    </div>
+
+        <!-- Interactive Item 2 (ITS Student Worker) --><div data-id="work_its" class="interactive-item p-3 rounded-lg border-l-4 border-transparent">
+        <p class="font-bold text-[#007BFF]">ITS Student Worker (Level 2)</p>
+        <p class="text-sm text-[#A0AEC0]">Tiffin University (July 2022 – Aug 2024)</p>
+    </div>
+
+        <!-- Interactive Item 3 (NCL) --><div data-id="ncl_comp" class="interactive-item p-3 rounded-lg border-l-4 border-transparent">
+        <p class="font-bold text-[#007BFF]">NCL Competition Gold Performance</p>
+        <p class="text-sm text-[#A0AEC0]">Practical skills in OSINT, Cracking, and Crypto.</p>
+    </div>
+
+        <h3 class="text-2xl font-semibold text-[#EAEAEA] mt-8 mb-4 border-b border-[#007BFF]/50 pb-2">Education & Certifications</h3>
+
+        <!-- Interactive Item 4 (Education) --><div data-id="education" class="interactive-item p-3 rounded-lg border-l-4 border-transparent">
+        <p class="font-bold text-[#007BFF]">B.S. Computer Science</p>
+        <p class="text-sm text-[#A0AEC0]">University of Mount Union (Minor in Comp & Net Security)</p>
+    </div>
+    </div>
+
+        <!-- Right Column: Story Display --><div class="bg-[#1A1A1A] p-6 rounded-xl border border-[#A0AEC0]/30 shadow-inner">
+        <h3 id="story-title" class="text-2xl font-bold text-[#007BFF] mb-4">Click an Entry on the Left!</h3>
+        <p id="story-content" class="text-[#EAEAEA]/80 space-y-4">
+            <span class="text-[#A0AEC0]">Hover over any highlighted item in the experience hub to load a short story or anecdote that demonstrates leadership, problem-solving, or critical thinking related to that achievement.</span>
+        </p>
+    </div>
+    </div>
 </section>
 
-<footer>
-    <p>&copy; 2025 Cole Watson. All rights reserved.</p>
+    <!-- 5. Education & Credentials Section --><section id="education" class="pt-32 pb-20">
+    <h2 class="text-4xl font-bold mb-12 text-center text-[#007BFF] flex items-center justify-center"><i data-lucide="graduation-cap" class="w-9 h-9 mr-3 text-[#A0AEC0]"></i> Education & Credentials</h2>
+
+    <div class="bg-card-dark p-8 rounded-xl shadow-xl border-l-8 border-[#007BFF] max-w-4xl mx-auto">
+        <h4 class="text-3xl font-semibold text-[#EAEAEA] mb-2">B.S. Computer Science</h4>
+        <p class="text-xl text-[#EAEAEA]/80 mb-6">University of Mount Union</p>
+        <div class="text-[#EAEAEA]/70 space-y-2 mt-6">
+            <p>Minor: Computer and Network Security</p>
+            <p>Expected Graduation: May 2026</p>
+            <p>• <strong>Certifications:</strong> Certiport IT Specialist (Python, HTML & CSS, Databases).</p>
+            <p>• <strong>Disciplines:</strong> Networking, Python, Java, SQL, Data Management, and Security Principles.</p>
+            <p class="mt-4 text-xl font-medium text-[#007BFF]">
+                Actively working towards the <strong>CompTIA Security+</strong> certification.
+            </p>
+        </div>
+    </div>
+</section>
+
+    <!-- 6. Contact Section (Embedded Footer) --><section id="contact" class="pt-32 pb-20">
+    <div class="bg-card-dark p-10 rounded-xl shadow-2xl max-w-2xl mx-auto text-center border-2 border-[#007BFF]/50">
+        <h3 class="text-3xl font-bold text-[#007BFF] mb-4">Ready to Contribute.</h3>
+        <p class="text-lg text-[#EAEAEA]/80 mb-6">I am highly motivated to join your organization and apply my technical skills immediately.</p>
+        <a href="mailto:colekwatson@gmail.com&subject=Website%20Request%20|%20" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-lg font-medium rounded-lg shadow-xl text-[#1A1A1A] bg-[#007BFF] hover:bg-[#A0AEC0] transition duration-300 transform hover:scale-105">
+            Email Cole Watson <i data-lucide="mail" class="w-5 h-5 ml-3"></i>
+        </a>
+    </div>
+</section>
+
+</main>
+
+<!-- Footer --><footer class="mt-8 py-6 bg-[#2C2C2C] text-center text-[#EAEAEA]/50 border-t border-[#2C2C2C]">
+    <p>&copy; 2025 Cole Watson | Cybersecurity & IT Portfolio </p>
+    <div class="flex justify-center space-x-4 mt-3">
+        <!-- LinkedIn Icon -->
+        <a href="https://linkedin.com/in/colewatson-oh" target="_blank" class="text-[#A0AEC0] hover:text-[#007BFF]"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+        <!-- GitHub Icon -->
+        <a href="https://github.com/ColeWatsonOH" target="_blank" class="text-[#A0AEC0] hover:text-[#007BFF]"><i data-lucide="github" class="w-5 h-5"></i></a>
+    </div>
 </footer>
+
+<script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // JavaScript for Mobile Menu Toggle
+    const menuButton = document.getElementById('menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+
+    menuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu when a link is clicked
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            // Wait for the smooth scroll to finish, then hide the menu
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+            }, 300);
+        });
+    });
+
+    // --- Interactive Resume Logic ---
+    const stories = {
+        work_its: {
+            title: "Story: Leading IT Troubleshooting & Training",
+            content: "As a Level 2 ITS Student Worker, my primary challenge was escalating issues and ensuring team readiness. I developed and led training for Level 1 staff on complex processes, including FOG and MDT computer imaging protocols. This experience taught me leadership, complex documentation, and how to maintain system integrity for 1,500 users."
+        },
+        work_das: {
+            title: "Story: Digital Asset Management Strategy",
+            content: `In the Music Department, digital content was disorganized, leading to retrieval issues. I implemented a comprehensive Digital Asset Management (DAM) strategy, standardizing file formats and naming conventions. This project directly improved efficiency and cross-platform accessibility for over 100 faculty and staff users.`
+        },
+        ncl_comp: {
+            title: "Story: Applying Real-World Cyber Skills",
+            content: `Earning Gold in the NCL Spring 2024 competition was a massive validation of my practical skills. The challenge required immediate application of knowledge in cryptography and OSINT (Open-Source Intelligence) under a time limit. This demonstrates my ability to pivot quickly and solve complex security puzzles.`
+        },
+        education: {
+            title: "Story: Specializing in Security Fundamentals",
+            content: `The Computer and Network Security minor at Mount Union focuses heavily on defensive security architecture and networking principles. This specialized coursework, combined with actively pursuing the CompTIA Security+, ensures my foundational knowledge is both deep and industry-aligned for entry-level roles.`
+        },
+    };
+
+    const interactiveItems = document.querySelectorAll('.interactive-item');
+    const storyTitle = document.getElementById('story-title');
+    const storyContent = document.getElementById('story-content');
+
+    interactiveItems.forEach(item => {
+        const loadStory = (event) => {
+            const id = item.getAttribute('data-id');
+            const story = stories[id];
+
+            // Remove 'active' class from all, add to current
+            interactiveItems.forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+
+            // Update story box
+            storyTitle.textContent = story.title;
+            storyContent.innerHTML = story.content.replace(/\n/g, '<br>'); // Handle new lines
+        };
+
+        // Load story on hover (mouseenter)
+        item.addEventListener('mouseenter', loadStory);
+        // Also load story on click for touch devices
+        item.addEventListener('click', loadStory);
+    });
+
+</script>
+
 </body>
 </html>
